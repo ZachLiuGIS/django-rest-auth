@@ -51,6 +51,9 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'rest_auth.registration',
+
+    # rest cors support
+    'corsheaders',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,6 +64,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 )
 
 ROOT_URLCONF = 'demo.urls'
@@ -113,7 +117,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_THROTTLE_CLASSES': (
@@ -125,3 +129,13 @@ REST_FRAMEWORK = {
         'user': '1000/day'
     }
 }
+
+# CORS Setting
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+
+)
+CORS_ORIGIN_REGEX_WHITELIST = (
+    r'^(https?://)?localhost',
+    r'^(https?://)?127.',
+)
